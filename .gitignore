@@ -1,0 +1,29 @@
+# Logs
+svelte-chess/logs
+svelte-chess/*.log
+svelte-chess/npm-debug.log*
+svelte-chess/yarn-debug.log*
+svelte-chess/yarn-error.log*
+svelte-chess/pnpm-debug.log*
+svelte-chess/lerna-debug.log*
+
+svelte-chess/node_modules
+svelte-chess/dist
+svelte-chess/dist-ssr
+svelte-chess/*.local
+
+# Editor directories and files
+svelte-chess/.vscode
+svelte-chess/!.vscode/extensions.json
+svelte-chess/.idea
+svelte-chess/.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+MinimaxChessBackend/.vs
+
+bin/
+obj/
