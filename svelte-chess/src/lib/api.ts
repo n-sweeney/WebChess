@@ -1,10 +1,13 @@
-import type { Board } from "./board";
+import type { Board, Move } from "./board";
 
 const BASE_URL = "http://localhost:5000/api/chess/";
 
 // TODO: error handling
 
-export async function getBestMove(board: Board, colour: string = "Black") {
+export async function getBestMove(
+  board: Board,
+  colour: string = "Black"
+): Promise<Move> {
   const res = await fetch(BASE_URL + "best-move", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -19,7 +22,10 @@ export async function getBestMove(board: Board, colour: string = "Black") {
   return await res.json();
 }
 
-export async function getLegalMoves(board: Board, colour: string) {
+export async function getLegalMoves(
+  board: Board,
+  colour: string
+): Promise<Move[]> {
   const response = await fetch(`${BASE_URL}legal-moves`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
