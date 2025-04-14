@@ -1,4 +1,4 @@
-import { getInitialBoard, applyMove, checkWinner } from './board';
+import { getInitialBoard, applyMove, checkWinner, cloneBoard } from './board';
 import type { Board, Colour, Move, Piece, Square, WinnerColour } from './board';
 import { getBestMove, getLegalMoves } from './api';
 
@@ -22,6 +22,10 @@ type GameStateSave = {
 	blackTaken: Piece[];
 };
 
+/**
+ * Generates a default gamestate to store all the game information on.
+ * @returns An initial gamestate with default values
+ */
 export function createGameState(): GameState {
 	return {
 		board: getInitialBoard(),
@@ -37,6 +41,12 @@ export function createGameState(): GameState {
 	};
 }
 
+/**
+ * Appends a taken piece to the provided gamestates respective taken pieces.
+ * @param piece The piece being taken
+ * @param taker The colour taking the piece
+ * @param state the current gamestate
+ */
 export function takePiece(piece: Piece, taker: Colour, state: GameState) {
 	if (taker === 'White') {
 		state.whiteTaken = [...state.whiteTaken, piece];
@@ -45,6 +55,13 @@ export function takePiece(piece: Piece, taker: Colour, state: GameState) {
 	}
 }
 
+/**
+ * Handles the square selection for the player - this focuses on validating correct pieces are selected and making moves.
+ * Once the player makes their valid move, the Computer's move is triggered
+ * @param row The selected row
+ * @param col The selected column
+ * @param state the current gamestate
+ */
 export async function handleSelectSquare(
 	row: number,
 	col: number,
@@ -113,6 +130,10 @@ export async function handleSelectSquare(
 	}
 }
 
+/**
+ * Resets the provided gamestate to the default values.
+ * @param state the current gamestate
+ */
 export function resetGameState(state: GameState) {
 	state.board = getInitialBoard();
 	state.selected = null;
@@ -123,10 +144,11 @@ export function resetGameState(state: GameState) {
 	state.blackTaken = [];
 }
 
-export function cloneBoard(board: Board): Board {
-	return board.map((row) => [...row]);
-}
-
+/**
+ * Saves the important information from the game state to a save object
+ * @param state the current gamestate
+ * @returns A save gamestate
+ */
 export function saveGameState(state: GameState): GameStateSave {
 	return {
 		board: cloneBoard(state.board),
@@ -136,6 +158,11 @@ export function saveGameState(state: GameState): GameStateSave {
 	};
 }
 
+/**
+ * Loads an existing save onto a game state, used for redo
+ * @param state the current gamestate
+ * @param save A save gamestate
+ */
 export function restoreGameState(state: GameState, save: GameStateSave) {
 	state.board = save.board;
 	state.currentTurn = save.currentTurn;

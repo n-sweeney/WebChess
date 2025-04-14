@@ -1,4 +1,4 @@
-<h1 class="flex items-center justify-center pt-20 pb-52">
+<h1 class="flex items-center justify-center pt-20 pb-52 text-center">
 	Welcome to my portfolio frontend! This demonstrates example projects such as Chess using Minimax.
 	The logic is completed in a C# Backend with SvelteKit, Typescript and Tailwind CSS used for the
 	frontend.

@@ -11,7 +11,7 @@
 	type="button"
 	class={`flex items-center justify-center rounded-none
     ${(row + col) % 2 === 0 ? 'bg-[#f0d9b5]' : 'bg-[#b58863]'}
-    ${isLegal ? 'outline-3 outline-green-400' : ''}`}
+    ${isLegal ? 'border-3 border-green-400' : ''}`}
 	on:click={onClick}
 >
 	{#if piece}
